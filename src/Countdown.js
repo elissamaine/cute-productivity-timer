@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
+// //i need all of these passsed down as well as 
 
-function Countdown(Props) {
+// function Countdown({Props}) {
   
-  return (
-    <>
+//   return (
+//     <>
       
-    </>
-  );
-};
+//     </>
+//   );
+// };
 
-export default Countdown;
+// export default Countdown;
+
+// i dont know if i need this page honestly
