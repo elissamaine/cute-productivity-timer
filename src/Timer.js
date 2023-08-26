@@ -25,6 +25,11 @@ const times = [
     time: "15 min",
     seconds: 900,
     saying: "Take this time to relax!"
+  },
+  {
+    time: "stop",
+    seconds: 0,
+    saying: ""
   }
 ]
 
@@ -32,20 +37,21 @@ const times = [
 
 function Timer() {
   //use useState for the time 
-  //JUST MAKE THE TIME OF THE BUTTONS IN SECONDS MAYBE... BUT I WANT THE TIME DISPLAYED IN MINS AND HOURS AS WELL?
+  //this is the usestate for the seconds on the actual timer/ countdown component
   const [seconds, setSeconds] = useState(0);
 
-  //
-  const [selectedTime, setSelectedTime] = useState(0)
-  
+  // this is for the selection of the buttons on the top of the page
+  const [selectedTime, setSelectedTime] = useState(4);
+  const handleTimeChange = (index) => setSelectedTime(index)
   
   return (
     <>
       <div className='selection'>
-        {times.map(times => (
+        {times.map((times, index) => (
           <button 
             className='time{times.time}'
             key={times.seconds}
+            onClick={() => handleTimeChange(index)}
           >
             <h1>{times.time}</h1>
           </button>
