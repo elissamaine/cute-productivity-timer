@@ -8,7 +8,7 @@ const times = [
   {
     time: "90 min",
     seconds: 5400,
-    saying: ""
+    saying: "WOW you're working hard!!"
   },
   {
     time: "60 min",
@@ -28,7 +28,7 @@ const times = [
   {
     time: "stop",
     seconds: 0,
-    saying: ""
+    saying: "select a time"
   }
 ]
 
@@ -83,6 +83,7 @@ function Timer() {
 
       <div className='timer'>
         <h1>{timeRemaining(seconds)}</h1>
+        <h2>{times[selectedTime].saying}</h2>
       </div>
     </>
   );
