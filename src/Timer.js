@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import Countdown from "./Countdown"
+import { useState, useEffect } from 'react';
 
 // have buttons on the top of the page that have the pre determined times for the timer 
 // an 90min, 60min, 45min, and 15min
@@ -33,13 +32,38 @@ const times = [
   }
 ]
 
-
-
 function Timer() {
   // this is for the selection of the buttons on the top of the page
-  const [selectedTime, setSelectedTime] = useState(3);
+  const [selectedTime, setSelectedTime] = useState(4);
   const handleTimeChange = (index) => setSelectedTime(index)
   
+  //use useState for the time in the countdown component 
+  //use the times array and the selectedTime as the index to find the 
+  //selected seconds and have that be the begining of the use state 
+  const initialTime = times[selectedTime].seconds 
+  const [seconds, setSeconds] = useState(initialTime);
+  console.log(selectedTime)
+
+  //use useEffect in order to update the timer after every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(prevSeconds => prevSeconds - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [seconds, selectedTime]);
+
+  //format the seconds so that it is displayed in hours, mins, and seconds 
+  const timeRemaining = (timeInSeconds) => {
+    const hr = Math.floor(timeInSeconds / 3600);
+    const min = Math.floor((timeInSeconds % 3600) / 60);
+    const sec = timeInSeconds % 60
+
+    return `${hr}:${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
   return (
     <>
       <div className='selection'>
@@ -49,7 +73,7 @@ function Timer() {
             key={times.seconds}
             onClick={() => {
               handleTimeChange(index);
-              console.log(index, selectedTime);
+              setSeconds(times.seconds)
             }}
           >
             <h1>{times.time}</h1>
@@ -58,7 +82,7 @@ function Timer() {
       </div>
 
       <div className='timer'>
-        <Countdown times={times} selectedTime={selectedTime}/>
+        <h1>{timeRemaining(seconds)}</h1>
       </div>
     </>
   );

@@ -8,7 +8,7 @@ function Countdown({times, selectedTime}) {
   //selected seconds and have that be the begining of the use state 
   const initialTime = times[selectedTime].seconds 
   const [seconds, setSeconds] = useState(initialTime);
-  
+  console.log(selectedTime)
 
   //use useEffect in order to update the timer after every second
   useEffect(() => {
@@ -19,7 +19,7 @@ function Countdown({times, selectedTime}) {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [seconds]);
+  }, [seconds, selectedTime]);
 
   //format the seconds so that it is displayed in hours, mins, and seconds 
   const timeRemaining = (timeInSeconds) => {
