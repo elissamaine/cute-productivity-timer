@@ -1,16 +1,42 @@
-// import { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 
-// //i need all of these passsed down as well as 
 
-// function Countdown({Props}) {
+function Countdown({times, selectedTime}) {
+  //use useState for the time in the countdown component 
+  //use the times array and the selectedTime as the index to find the 
+  //selected seconds and have that be the begining of the use state 
+  const initialTime = times[selectedTime].seconds 
+  const [seconds, setSeconds] = useState(initialTime);
   
-//   return (
-//     <>
-      
-//     </>
-//   );
-// };
 
-// export default Countdown;
+  //use useEffect in order to update the timer after every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(prevSeconds => prevSeconds - 1);
+      }
+    }, 1000);
 
-// i dont know if i need this page honestly
+    return () => clearInterval(intervalId);
+  }, [seconds]);
+
+  //format the seconds so that it is displayed in hours, mins, and seconds 
+  const timeRemaining = (timeInSeconds) => {
+    const hr = Math.floor(timeInSeconds / 3600);
+    const min = Math.floor((timeInSeconds % 3600) / 60);
+    const sec = timeInSeconds % 60
+
+    return `${hr}:${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
+  return (
+    <>
+      <div>
+        <h1>{timeRemaining(seconds)}</h1>
+      </div>
+    </>
+  );
+};
+
+export default Countdown;

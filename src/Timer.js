@@ -36,12 +36,8 @@ const times = [
 
 
 function Timer() {
-  //use useState for the time 
-  //this is the usestate for the seconds on the actual timer/ countdown component
-  const [seconds, setSeconds] = useState(0);
-
   // this is for the selection of the buttons on the top of the page
-  const [selectedTime, setSelectedTime] = useState(4);
+  const [selectedTime, setSelectedTime] = useState(3);
   const handleTimeChange = (index) => setSelectedTime(index)
   
   return (
@@ -49,9 +45,12 @@ function Timer() {
       <div className='selection'>
         {times.map((times, index) => (
           <button 
-            className='time{times.time}'
+            className={`time${times.time}`}
             key={times.seconds}
-            onClick={() => handleTimeChange(index)}
+            onClick={() => {
+              handleTimeChange(index);
+              console.log(index, selectedTime);
+            }}
           >
             <h1>{times.time}</h1>
           </button>
@@ -59,7 +58,7 @@ function Timer() {
       </div>
 
       <div className='timer'>
-        {/* <Countdown times={times}/> */}
+        <Countdown times={times} selectedTime={selectedTime}/>
       </div>
     </>
   );
