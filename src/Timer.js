@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+import './Timer.scss';
+import bgImage from './images/background.png'
+
 // have buttons on the top of the page that have the pre determined times for the timer 
 // an 90min, 60min, 45min, and 15min
 //take whichever time on the button clicked and create timer counting down from that time
@@ -8,7 +11,7 @@ const times = [
   {
     time: "90 min",
     seconds: 5400,
-    saying: "WOW you're working reeeeeaaaally hard!!"
+    saying: "WOW you're working really hard!!"
   },
   {
     time: "60 min",
@@ -82,8 +85,13 @@ function Timer() {
       </div>
 
       <div className='timer'>
-        <h1 className='time-remaining'>{timeRemaining(seconds)}</h1>
-        <h2 className='saying'>{times[selectedTime].saying}</h2>
+        <div className='img'>
+          <img src={bgImage} alt="" />
+          <div className='content'>
+            <h1 className='time-remaining'>{timeRemaining(seconds)}</h1>
+            <h2 className='saying'>{times[selectedTime].saying}</h2>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Timer from './Timer';
 
 function App() {
