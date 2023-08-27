@@ -1,9 +1,31 @@
 .selection {
-  width: 100%;
+  position: absolute;
+  z-index: 99;
+  width: 60%;
+  right: 20%;
+  top: 20px;
   display: flex;
   align-items: end;
   justify-content: space-around;
 
+  button {
+    background-color: #8E68E6;
+    width: 7vw;
+    border-radius: 30px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    appearance: none;
+    box-shadow: 1px 1px 5px #E1D5FD;
+    text-align: center;
+
+    h1 {
+      font-family: 'Kanit', sans-serif;
+      font-size: 2vw;
+      font-weight: 300;
+    }
+  }
 }
 
 .timer {
@@ -12,6 +34,7 @@
   .img {
     position: absolute;
     left: 10%;
+    top: 50px;
     width: 80%;
 
     img {
@@ -34,10 +57,12 @@
         font-size: 8vw;
         font-weight: 300;
         margin: 0;
+        text-shadow: 2px 2px 5px #8E68E6;
       }
 
       h2 {
-        font-size: 3vw;
+        font-weight: 200;
+        font-size: 3.2vw;
         margin: 0;
         text-align: center;
       }
